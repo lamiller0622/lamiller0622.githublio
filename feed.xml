@@ -9,11 +9,12 @@
     <itunes:author>Luke Miller</itunes:author>
     <itunes:explicit>yes</itunes:explicit>
     <itunes:category text="Music"/>
-    <description>Private mixes with chapters.</description>
+    <description>Private channel with some of my mixes</description>
 
     <item>
-      <title>Mix October 2025</title>
-      <description>Private DJ mix with chapters.</description>
+      <title>Mixes 2024 (Reprise)</title>
+      <description>Condensed version of last years mix. Chapter list:
+      </description>
       <enclosure
         url="https://drive.google.com/uc?export=download&amp;id=1Tp6DPaM2SwpenZWZ4ZR7lnp44qAAQJG"
         type="audio/mp4"
