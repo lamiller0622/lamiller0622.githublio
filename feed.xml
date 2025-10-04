@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:media="http://search.yahoo.com/mrss/">
+
+  <channel>
+    <title>Luke’s Mixes</title>
+    <link>http://example.com</link>
+    <language>en-us</language>
+    <copyright>© 2025 Luke Miller</copyright>
+    <itunes:author>Luke Miller</itunes:author>
+    <itunes:explicit>yes</itunes:explicit>
+    <itunes:category text="Music"/>
+    <itunes:image href="https://yourhost.com/coverart.jpg"/>
+    <description>Private mixes with chapters.</description>
+
+    <item>
+      <title>Mix October 2025</title>
+      <description>A private DJ mix with chapters.</description>
+      <enclosure url="https://drive.google.com/file/d/1Tp6DPaM2SwpenZWZ4ZR7lnp44qAAQJGl/view?usp=drive_link" type="audio/mp4" length="180000000"/>
+      <guid>mix-2025-10-04</guid>
+      <pubDate>Sat, 04 Oct 2025 12:00:00 GMT</pubDate>
+    </item>
+
+  </channel>
+</rss>
