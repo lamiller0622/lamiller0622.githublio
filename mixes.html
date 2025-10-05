@@ -197,6 +197,73 @@
     navigator.mediaSession.setActionHandler('nexttrack', () => nextBtn.onclick());
     navigator.mediaSession.setActionHandler('seekto', (d) => { audio.currentTime = d.seekTime || audio.currentTime; });
   }
+
+    let lastChapterIdx = -1;
+
+  function updateMediaSessionForChapter(idx) {
+    if (!('mediaSession' in navigator)) return;
+    const [start, title] = chapters[idx] || [0, ""];
+
+    // (Optional) show chapter time in the title
+    const t = fmt(start);
+    const mixTitle = "Mixes 2024 (Reprise)";
+    const artist = "Luke Miller";
+    const album  = "Mixes 2024";
+
+    // Reuse existing artwork if you set it earlier; otherwise omit 'artwork'
+    const currentArtwork = (navigator.mediaSession.metadata && navigator.mediaSession.metadata.artwork) || undefined;
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: `${title} — ${mixTitle}`,   // shows chapter name on lock screen
+      artist,
+      album,
+      artwork: currentArtwork
+    });
+
+    // Keep OS in sync with position & duration for smoother lock-screen scrubbing
+    try {
+      navigator.mediaSession.setPositionState({
+        duration: isFinite(audio.duration) ? audio.duration : 0,
+        playbackRate: audio.playbackRate || 1,
+        position: audio.currentTime || 0
+      });
+    } catch (_) {}
+  }
+
+  // Call this whenever time moves enough to cross a chapter boundary
+  function maybeUpdateChapterMetadata() {
+    const idx = chapterIndexAt(audio.currentTime);
+    if (idx !== lastChapterIdx) {
+      lastChapterIdx = idx;
+      updateMediaSessionForChapter(idx);
+    }
+  }
+
+  // Hook into your existing events
+  audio.addEventListener('loadedmetadata', () => {
+    // Initialize at the right chapter when the file loads
+    maybeUpdateChapterMetadata();
+  });
+  audio.addEventListener('timeupdate', () => {
+    // Update when crossing chapter boundaries
+    maybeUpdateChapterMetadata();
+  });
+  audio.addEventListener('ratechange', () => {
+    // Keep OS position state accurate at new playbackRate
+    if ('mediaSession' in navigator) {
+      try {
+        navigator.mediaSession.setPositionState({
+          duration: isFinite(audio.duration) ? audio.duration : 0,
+          playbackRate: audio.playbackRate || 1,
+          position: audio.currentTime || 0
+        });
+      } catch (_) {}
+    }
+  });
+
+  // If you use per-chapter artwork, set it here too:
+  // const chapterArtMap = { 0: "cover1.jpg", 146.402: "cover2.jpg", ... };
+  // and swap 'artwork' inside updateMediaSessionForChapter when idx changes.
 </script>
 <div class="sticky-footer">You can keep your phone locked and skip chapters outside of webpage.</div>
 </body>
