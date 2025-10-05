@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
+<link rel="icon" href="https://pub-eb118f23ac7b48a3985b8985ef92286c.r2.dev/cover.png">
+<meta property="og:image" content="https://pub-eb118f23ac7b48a3985b8985ef92286c.r2.dev/cover.png">
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta property="og:title" content="Mixes 2024 (Reprise)">
+<meta property="og:description" content="Last year's mixes condensed.">
+<meta property="og:type" content="music.song">
+<meta property="og:url" content="https://lamiller0622.github.io/lamiller0622.githublio/mixes.html">
+<meta name="twitter:card" content="summary_large_image">
 <title>Mixes 2024 (Reprise) — Luke Miller</title>
 <style>
   :root { --fg:#0b0b0b; --bg:#fafafa; --muted:#666; --accent:#0a84ff; }
@@ -40,6 +47,10 @@
       <button id="prev">⟵ Prev chapter</button>
       <button id="next">Next chapter ⟶</button>
       <div class="time"><span id="cur">00:00</span> / <span id="dur">—:—</span></div>
+      <a href="https://pub-…r2.dev/mixes_2024_faststart.m4a" download
+         style="margin-left:auto;text-decoration:none;border:1px solid #0002;padding:10px 12px;border-radius:10px">
+        ⤓ Download
+      </a>
     </div>
   </div>
 
@@ -51,6 +62,13 @@
 <script>
   // === CONFIG ===
   const AUDIO_URL = "https://pub-eb118f23ac7b48a3985b8985ef92286c.r2.dev/mixes_2024_faststart.m4a";
+
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: "Mixes 2024 (Reprise)",
+    artist: "Luke Miller",
+    album: "Mixes",
+    artwork: [{ src: "https://pub-eb118f23ac7b48a3985b8985ef92286c.r2.dev/cover.png", sizes: "1024x1024", type: "image/jpeg" }],
+  });
 
   // Chapters (seconds + title)
   const chapters = [
